@@ -3,6 +3,7 @@ const createError = require("../utils/errorHandler");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const userInfoFilter = require("../utils/userInfoFilter");
 dotenv.config();
 
 const login = async (req, res, next) => {
@@ -16,7 +17,7 @@ const login = async (req, res, next) => {
     const verifyPassword = bcrypt.compareSync(password, foundUser.password);
     if (!verifyPassword)
       return next(createError(403, "Username or Password Incorrect"));
-    const { password: hashedPassword, ...rest } = foundUser._doc;
+    const userInfo = userInfoFilter(foundUser);
     // const userID = foundUser._id;
     const accessToken = jwt.sign(
       { userId: foundUser._id },
@@ -32,13 +33,16 @@ const login = async (req, res, next) => {
     res
       .cookie("jwt", refreshToken, {
         httpOnly: true,
+        sameSite: "none",
+        // secure:true,
         maxAge: 30 * 24 * 60 * 60 * 1000,
       })
       .status(200)
       .json({
         success: true,
         message: "Login Successful",
-        userInfo: rest,
+        token: accessToken,
+        userInfo,
       });
   } catch (error) {
     next(error);

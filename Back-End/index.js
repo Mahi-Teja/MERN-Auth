@@ -5,6 +5,8 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const authRoute = require("./routes/authRoute.js");
+const userRoute = require("./routes/userRoute.js");
+const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 //db connection
 mongoose
@@ -17,8 +19,15 @@ mongoose
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 app.use("/api/auth", authRoute);
+app.use("/api/user", userRoute);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

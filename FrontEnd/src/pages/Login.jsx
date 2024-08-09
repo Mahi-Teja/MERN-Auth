@@ -28,8 +28,8 @@ export const Login = () => {
     try {
       const response = await axios.post(
         " http://localhost:3000/api/auth/login",
-        formData
-        // { withCredentials: true }
+        formData,
+        { withCredentials: true }
       );
       const data = response.data;
       setUserInfo(data.userInfo);

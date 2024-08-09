@@ -7,8 +7,8 @@
 First, clone the repository from the source:
 
 ```bash
-git clone <repository-url>
-cd <repository-name>
+git clone https://github.com/Mahi-Teja/MERN-Auth.git
+cd MERN-Auth
 ```
 
 ### 2. Backend Setup
@@ -16,7 +16,7 @@ cd <repository-name>
 #### Navigate to the Backend Directory:
 
 ```bash
-cd BE
+cd Back-End
 ```
 
 #### Install Backend Dependencies:
@@ -27,9 +27,9 @@ npm install
 
 #### Create a `.env` File:
 
-In the `BE` directory, create a file named `.env` and add the following environment variables:
+In the `Back-End` directory, create a file named `.env` and add the following environment variables:
 
-```env
+```.env
 DB_URL='your mongoDB url'
 REFRESH_SECRET='yourJWTsecret'
 ACCESS_SECRET='anotherJWTsecret'
@@ -38,7 +38,7 @@ PORT=2
 
 #### Start the Backend:
 
-From the `BE` directory, run:
+From the `Back-End` directory, run:
 
 ```bash
 npm run dev
@@ -49,7 +49,7 @@ npm run dev
 #### Navigate to the Frontend Directory:
 
 ```bash
-cd ../FE
+cd ../FrontEnd
 ```
 
 #### Install Frontend Dependencies:
@@ -60,7 +60,7 @@ npm install
 
 #### Start the Frontend:
 
-From the `FE` directory, run:
+From the `FrontEnd` directory, run:
 
 ```bash
 npm run dev

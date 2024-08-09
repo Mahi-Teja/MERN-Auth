@@ -14,7 +14,7 @@ export const Header = () => {
             <LinkButton lable={"About"} />
           </li>
           <li>
-            <LinkButton path={"/user/profile"} lable={"Pofile"} />
+            <LinkButton path={"/user/profile"} lable={"Profile"} />
           </li>
         </ul>
       </nav>

@@ -2,18 +2,26 @@ import React, { useState } from "react";
 import { useResetRecoilState } from "recoil";
 import { userInfoAtom } from "../atoms/userAtom";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const Logout = () => {
   const resetUser = useResetRecoilState(userInfoAtom);
   const [Loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const HandleLogOut = () => {
+  const HandleLogOut = async () => {
     setLoading(true);
-    setTimeout(() => {
-      resetUser();
-      navigate("/login");
-      setLoading(false);
-    }, 500);
+    try {
+      await axios.get("http://localhost:3000/api/auth/logout", {
+        withCredentials: true,
+      });
+      setTimeout(() => {
+        resetUser();
+        navigate("/login");
+        setLoading(false);
+      }, 500);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>

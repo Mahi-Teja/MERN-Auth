@@ -1,9 +1,11 @@
 import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <>App</>;
+  return (
+    <>
+      <p className="text-center text-4xl">App </p>
+    </>
+  );
 }
 
 export default App;
